@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  <script src="{{ url_for('static', filename='js/student_socket.js') }}"></script>
+  <title>📘 أكاديمية الظل الرقمي</title>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #0d0d0d;
+      color: #eee;
+      overflow-x: hidden;
+    }
+
+    canvas#matrix-bg {
+      position: fixed;
+      top: 0; left: 0;
+      z-index: -1;
+    }
+
+    #loader {
+      background: #000;
+      color: #00e5ff;
+      position: fixed;
+      width: 100%; height: 100%;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      animation: fadeOut 1s ease forwards;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      color: #00e5ff;
+      margin-bottom: 0.3rem;
+    }
+    h2 {
+      color: #ccc;
+      font-weight: normal;
+      font-size: 1.1rem;
+    }
+
+    section {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    section h3 {
+      color: #0ff;
+      border-bottom: 1px solid #222;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: #1b1b1b;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #333;
+      color: #00e5ff;
+      text-decoration: none;
+      text-align: center;
+      transition: 0.5s;
+      height: 100px;
+    }
+
+    .card:hover {
+      transform: scale(1.2);
+      background: #242424;
+      box-shadow: 0 0 10px #00e5ff55;
+    }
+
+    footer {
+      padding: 2rem;
+      text-align: center;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* Mobile Navigation */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    .mobile-nav button {
+      background: #00e5ff;
+      border: none;
+      color: #000;
+      padding: 12px;
+      border-radius: 50%;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00e5ff99;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-nav { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- شاشة تحميل -->
+<div id="loader">🚀 جاري تحميل الأكاديمية...</div>
+
+<!-- خلفية Matrix -->
+<canvas id="matrix-bg"></canvas>
+  <!-- الشريط العلوي -->
+<nav style="position:fixed; top:0; right:0; width:100%; background:#0f0f0fdd; color:#00e5ff; padding:0.8rem 1rem; font-weight:bold; z-index:999; box-shadow:0 0 5px #00e5ff55; display:flex; justify-content:space-between; align-items:center;">
+  <span>📘 الظل الرقمي</span>
+  <a href="index.html" style="color:#0f0; text-decoration:none;">🏠 الرئيسية</a>
+</nav>
+
+<!-- إزاحة محتوى الصفحة ليظهر تحت الشريط -->
+<div style="height:3rem;"></div>
+
+<header>
+  <h1 data-aos="fade-down">📘 أكاديمية الظل الرقمي</h1>
+  <h1 data-aos="fade-up">GHAITH HASAN</h1>
+  <h2 data-aos="fade-up">تعلم الأمن السيبراني بأسلوب تفاعلي احترافي – من الصفر إلى الاحتراف</h2>
+  <h2>مرحبًا يا {{ student.name }} 👋</h2>
+  <p>رمز الجلسة: {{ student.session_code }}</p>
+</header>
+
+<!-- القسم 1 – الأساسيات -->
+<section>
+  <h3>🧠 الأساسيات</h3>
+  <div class="grid">
+    <a href="/cs50/{{ student.id }}" class="card" data-aos="zoom-in">🔎 CS50 – التفكير الحاسوبي</a>
+    <a href="/network/{{ student.id }}" class="card" data-aos="zoom-in" data-aos-delay="100">🌐 الشبكات</a>
+    <a href="/kali/{{ student.id }}" class="card" data-aos="zoom-in" data-aos-delay="200">💻 تنصيب كالي لينكس</a>
+    <a href="/kali-env/{{ student.id }}" class="card" data-aos="zoom-in" data-aos-delay="300">🧭 التعرف على كالي</a>
+    <a href="/about tools/{{ student.id }}" class="card" data-aos="zoom-in" data-aos-delay="400">🧪 أدوات النظام</a>
+    <a href="trminal.html" class="card" data-aos="zoom-in" data-aos-delay="500">الترمنال 📘</a>
+
+  </div>
+</section>
+<!-- القسم 2 – التمارين العملية -->
+<section>
+  <h3>🧪 التمارين العملية</h3>
+  <div class="grid">
+    <a href="tools.html" class="card" data-aos="fade-up">🔍 أدوات الفحص</a>
+    <a href="exploit.html" class="card" data-aos="fade-up" data-aos-delay="100">💥 الاستغلال</a>
+    <a href="lap.html" class="card" data-aos="fade-up" data-aos-delay="200">💻 بيئة كالي – تطبيق عملي</a>
+    <a href="sql-lap.html" class="card" data-aos="fade-up" data-aos-delay="300">🧬 SQL – تمرين استغلال</a>
+    <a href="metasploit-lap.html" class="card" data-aos="fade-up" data-aos-delay="400">🛠️ Metasploit – اختراق آمن</a>
+  </div>
+</section>
+
+<!-- القسم 3 – التقييم والمراجعة -->
+<section>
+  <h3>🎓 التقييم والمراجعة</h3>
+  <div class="grid">
+    <a href="summary.html" class="card" data-aos="zoom-in">📋 ملخص المستوى</a>
+    <a href="final-test.html" class="card" data-aos="zoom-in" data-aos-delay="100">📝 الاختبار النهائي</a>
+  </div>
+</section>
+
+<!-- زر حفظ PDF -->
+<section style="text-align: center; margin-top: 2rem;">
+  <button onclick="window.print()" style="background:#00e5ff; color:#000; border:none; padding:0.6rem 1rem; font-weight:bold; border-radius:6px; cursor:pointer;">📥 حفظ هذه الصفحة كـ PDF</button>
+</section>
+
+<!-- شريط الإنجاز -->
+<section style="margin-top:3rem;">
+  <h3>📈 مدى تقدمك:</h3>
+  <div id="progressBar" style="background:#222; border-radius:6px; overflow:hidden; height:20px;">
+    <div id="progressFill" style="background:#0f0; height:100%; width:0%; transition:0.8s;"></div>
+  </div>
+  <p id="progressStatus" style="color:#888; margin-top:0.5rem; font-size:0.9rem;"></p>
+</section>
+
+<!-- مساعد بسيط -->
+<!-- <section style="margin-top:4rem;">
+  <h3>🤖 اسأل الأكاديمية</h3>
+  <input type="text" placeholder="اسأل عن أي فصل..." id="askBox" style="width:90%; max-width:500px; padding:0.6rem; background:#000; color:#0f0; border:1px solid #00e5ff; border-radius:6px;">
+  <p style="color:#666; font-size:0.85rem;">(سيتم ربطه بالذكاء الاصطناعي )</p>
+</section> -->
+
+<!-- شارات الإنجاز -->
+<div id="badgeArea" style="position:fixed; top:10px; left:10px; background:#222; color:#0f0; padding:6px 10px; border-radius:6px; display:none; font-weight:bold; z-index:999;">🏅 مُتقن!</div>
+
+<!-- صوتيات -->
+<audio id="clickSound" src="https://cdn.pixabay.com/audio/2022/10/28/audio_6847d34f45.mp3" preload="auto"></audio>
+<!-- زر رجوع للجوال -->
+<div class="mobile-nav">
+  <button onclick="window.scrollTo({top:0, behavior:'smooth'})">⬆️</button>
+</div>
+  <!-- نموذج تحفيزي للنهاية -->
+<section style="background:#121212; padding:1.5rem; border-radius:8px; margin:2rem auto; max-width:600px; text-align:center; border:1px solid #222;">
+  <h3 style="color:#00e5ff;">🎯 مستواك بعد هذا الفصل:</h3>
+  <p style="font-size:1.1rem; color:#eee;">⚡ <strong>مستوى مبتدء</strong> ✔️<br>أنت تتقدّم بثبات... تابع حتى الاحتراف!</p>
+</section>
+
+<footer>
+  مصمّم بإبداع عربي 💻✨ | غيث حسن – 2025
+</footer>
+
+<!-- مكتبة AOS -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>AOS.init({ duration: 800, once: true });</script>
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+<!-- Matrix Background -->
+<script>
+  const canvas = document.getElementById("matrix-bg");
+  const ctx = canvas.getContext("2d");
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+
+  const chars = "01";
+  const fontSize = 14;
+  const columns = canvas.width / fontSize;
+  const drops = Array.from({length: columns}).fill(1);
+  // تتبع التقدم (محلي فقط)
+  const completedPages = JSON.parse(localStorage.getItem("cyberProgress")) || [];
+  const allFolds = ["cs50.html","network.html","kali.html","kali-env.html","about tools.html","trminal.html","tools.html","exploit.html","lap.html","sql-lap.html","metasploit-lap.html","summary.html","final-test.html"];
+  const fill = document.getElementById("progressFill");
+  const status = document.getElementById("progressStatus");
+  const percentage = Math.floor((completedPages.length / allFolds.length) * 100);
+  fill.style.width = percentage + "%";
+  status.innerText = `أنجزت ${completedPages.length} من ${allFolds.length} فصول (${percentage}%)`;
+
+  // شارة متقن
+  const showBadge = () => {
+    const badge = document.getElementById("badgeArea");
+    badge.style.display = "block";
+    setTimeout(() => badge.style.display = "none", 3000);
+  }
+
+  // تسجيل الدخول التلقائي للمستوى السابق
+  const pathname = location.pathname.split("/").pop();
+  if (!completedPages.includes(pathname) && allFolds.includes(pathname)) {
+    completedPages.push(pathname);
+    localStorage.setItem("cyberProgress", JSON.stringify(completedPages));
+    showBadge();
+  }
+
+  // الصوت
+  const cards = document.querySelectorAll(".card");
+  const clickSound = document.getElementById("clickSound");
+  cards.forEach(card => {
+    card.addEventListener("click", () => clickSound.play());
+  });
+  function drawMatrix() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#0f0";
+    ctx.font = `${fontSize}px monospace`;
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = chars[Math.floor(Math.random() * chars.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+      drops[i]++;
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) drops[i] = 0;
+    }
+  }
+  setInterval(drawMatrix, 40);
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+  const lastVisited = localStorage.getItem("lastChapter");
+  if (lastVisited && window.location.pathname.includes("index")) {
+    const btn = document.createElement("button");
+    btn.innerText = `📂 ابدأ من حيث توقفت (${lastVisited})`;
+    btn.style = "background:#0f0;color:#000;padding:0.6rem 1rem;margin:2rem auto;display:block;border:none;border-radius:6px;cursor:pointer;font-weight:bold;";
+    btn.onclick = () => window.location.href = lastVisited;
+    document.body.insertBefore(btn, document.querySelector("footer"));
+  }
+
+  // عند النقر على أي بطاقة، نخزنها
+  document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.setItem("lastChapter", card.getAttribute("href"));
+      location.href = card.getAttribute("href");
+    });
+  });
+
+
+<!-- تأثير إدخال المساعد -->
+
+  const askBox = document.getElementById("askBox");
+  if (askBox) {
+    askBox.addEventListener("focus", () => askBox.style.borderColor = "#0f0");
+    askBox.addEventListener("blur", () => askBox.style.borderColor = "#00e5ff");
+    askBox.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        const msg = askBox.value.trim();
+        if (msg.length > 0) alert("❓ سؤالك سيتم تحويله إلى المعالج قريبًا: " + msg);
+        askBox.value = "";
+      }
+    });
+  }
+</script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>AOS.init();</script>
+<script>
+  localStorage.setItem("student_id", "{{ student.id }}");
+  </script>
+  <script>
+  fetch('/track_progress/{{ student.id }}/index.html', {
+    method: 'POST'
+  });
+</script>
+
+</body>
+</html>

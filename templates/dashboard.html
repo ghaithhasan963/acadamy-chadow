@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>لوحة التحكم – أكاديمية الظل الرقمي</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f1826;
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 700px;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      color: #ffd54f;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin: 1rem 0;
+    }
+
+    a {
+      background: #ffd54f;
+      color: #000;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    a:hover {
+      background: #ffe082;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+<div class="glass-card" data-aos="fade-up">
+  <h2>مرحبًا يا {{ student.name }} 👋</h2>
+  <p>رمز الجلسة: {{ student.session_code }}</p>
+  <ul>
+    <li><a href="/cs50.html" target="_blank">مدخل الأكاديمية</a></li>
+    <li><a href="/trminal.html" target="_blank">الطرفية Terminal</a></li>
+    <li><a href="/about tools.html" target="_blank">مقدمة الأدوات</a></li>
+    <li><a href="/network.html" target="_blank">أدوات الشبكة</a></li>
+    <li><a href="/lap.html" target="_blank">البيئة الافتراضية (lap)</a></li>
+    <li><a href="/kali.html" target="_blank">مقدمة Kali</a></li>
+    <li><a href="/kali-env.html" target="_blank">بيئة Kali العملية</a></li>
+    <li><a href="/sql-lap.html" target="_blank">تمرين SQL Injection</a></li>
+    <li><a href="/metasploit-lap.html" target="_blank">تمرين Metasploit</a></li>
+    <li><a href="/exploit.html" target="_blank">مفهوم الـ Exploit</a></li>
+    <li><a href="/final-test.html" target="_blank">الاختبار النهائي</a></li>
+    <li><a href="/summary.html" target="_blank">الملخص النهائي</a></li>
+    <li><a href="/achievements.html" target="_blank">صفحة الإنجازات</a></li>
+    <li><a href="/certificate.html" target="_blank">الشهادة النهائية</a></li>
+  </ul>
+</div>
+
+<footer>© أكاديمية الظل الرقمي – جميع الحقوق محفوظة 2025</footer>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>AOS.init();</script>
+<script>
+  localStorage.setItem("student_id", "{{ student.id }}");
+</script>
+
+</body>
+</html>

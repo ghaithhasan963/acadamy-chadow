@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>🛠️ كالي لينُكس – الفصل الثالث</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      background: #0f1826;
+      color: #eee;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      overflow-x: hidden;
+    }
+
+    canvas#bgCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; right: 0;
+      width: 100%;
+      background: #0a0a0ad8;
+      padding: 0.8rem 1.5rem;
+      color: #00e5ff;
+      font-weight: bold;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: #0f0;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .glass-container {
+      width: 60%;
+      margin: 6rem auto 3rem;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      color: #00e5ff;
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .block {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 1.2rem 1.5rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 1.8rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .block:hover {
+      transform: scale(1.015);
+      box-shadow: 0 0 12px #00e5ff33;
+    }
+
+    .block h2 {
+      color: #00e5ff;
+      margin-bottom: 0.6rem;
+      font-size: 1.3rem;
+    }
+
+    .block p, .block ul, .block ol {
+      font-size: 1rem;
+      color: #ccc;
+      line-height: 1.7;
+    }
+
+    .block ul, .block ol {
+      padding-right: 1.5rem;
+    }
+
+    .btn-next {
+      background: #00e5ff;
+      color: #000;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.85rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+
+<nav>
+  <span>📘 أكاديمية الظل الرقمي</span>
+  <a href="academy-index.html">🏠 الرئيسية</a>
+</nav>
+
+<div class="glass-container">
+  <h1 data-aos="fade-down">🛠️ الفصل الثالث: كالي لينُكس</h1>
+  <section class="block" data-aos="fade-up">
+  <h2>🔍 ما هو كالي لينُكس؟</h2>
+  <p>كالي لينُكس هو نظام تشغيل مُصمم خصيصًا لاختبار الاختراق الأخلاقي، والتحليل الرقمي، والأمن السيبراني.</p>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="100">
+  <h2>🎯 لماذا نستخدم كالي؟</h2>
+  <ul>
+    <li>🔧 أكثر من 600 أداة مخصصة للتحليل الأمني</li>
+    <li>🚀 يعمل من دون تثبيت دائم (Live Boot)</li>
+    <li>🆓 مجاني ومفتوح المصدر</li>
+  </ul>
+  <div class="block" style="background:#1a1a1acc; border-right: 5px solid #00e5ff;">
+    💡 كالي مصمم للمختبرين، مش للاستخدام اليومي مثل ويندوز أو ماك.
+  </div>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="200">
+  <h2>💻 تثبيت كالي: VM أم نظام أساسي؟</h2>
+  <p>أمامك خياران:</p>
+  <ul>
+    <li><strong>🔹 Virtual Machine (موصى به):</strong> تشغيل كالي داخل ويندوز باستخدام VirtualBox</li>
+    <li><strong>🔸 Dual Boot:</strong> تثبيته بجانب ويندوز – خيار متقدم وخطر للمبتدئ</li>
+  </ul>
+  <div class="block" style="background:#1a1a1acc; border-right: 5px solid #ff9800;">
+    🧠 نصيحة: إذا كنت مبتدئ، اختَر الـ VM – آمن، وسهل الإزالة، وبدون مخاطرة.
+  </div>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="300">
+  <h2>🔧 ما الأدوات التي بداخله؟</h2>
+  <ul>
+    <li>🏹 Nmap, Wireshark, Metasploit, Burp Suite</li>
+    <li>📡 أدوات شبكات، تحليل حزم، اختبارات ويب</li>
+    <li>🧰 أدوات كلمات مرور، فك تشفير، كشف ثغرات</li>
+  </ul>
+  <div class="block" style="background:#1a1a1acc; border-right: 5px solid #00e5ff;">
+    🎯 ما رح نستخدم أي أداة إلا لما تكون البيئة آمنة والخطوات واضحة.
+  </div>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="400">
+  <h2>🛡️ ملاحظات قبل التنصيب</h2>
+  <ul>
+    <li>🚫 لا تثبّت النظام على جهازك الفعلي إلا إذا كنت محترف</li>
+    <li>🧪 استخدمه دائمًا داخل جهاز وهمي + بدون إنترنت مباشر</li>
+    <li>⚠️ لا تجرّب الأدوات على شبكات حقيقية أو أشخاص</li>
+  </ul>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="500">
+  <h2>⬇️ خطوات تثبيت كالي باستخدام VirtualBox</h2>
+  <ol>
+    <li>زر <a href="https://www.kali.org/get-kali/" target="_blank">موقع كالي الرسمي</a> لتحميل نسخة ISO</li>
+    <li>حمّل VirtualBox من موقعه وثبّته</li>
+    <li>أنشئ جهاز وهمي جديد واختر:
+      <ul>
+        <li>📦 النظام: Linux</li>
+        <li>🔢 الإصدار: Debian (64-bit)</li>
+        <li>💾 الرام: 2GB+</li>
+        <li>📁 القرص: 20GB+</li>
+      </ul>
+    </li>
+    <li>اربط ملف ISO في الإعدادات</li>
+    <li>ابدأ التنصيب واختَر "Graphical Install"</li>
+    <li>أكمل اختيار اللغة والمنطقة وكلمة السر</li>
+    <li>بعد الانتهاء، ستدخل إلى نظام كالي</li>
+  </ol>
+  <div class="block" style="background:#1a1a1acc; border-right: 5px solid #4caf50;">
+    ✅ إذا واجهت مشاكل… أعد الخطوات أو تابع فيديو حديث حسب إصدار كالي.
+  </div>
+</section>
+  <!-- AOS وظهور الفقرات -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+</div>
+    <script>
+  AOS.init({
+    duration: 800,
+    once: true,
+    easing: 'ease-in-out',
+  });
+</script>
+
+<!-- خلفية المربعات المتساقطة -->
+<script>
+  const canvas = document.getElementById("bgCanvas");
+  const ctx = canvas.getContext("2d");
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+
+  const squares = [];
+  const colors = ["#1c2f47", "#274664", "#325d84"];
+  for (let i = 0; i < 35; i++) {
+    squares.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 60 + 40,
+      rotation: Math.random() * 360,
+      speed: Math.random() * 0.3 + 0.1,
+      rotSpeed: Math.random() * 0.4 - 0.2,
+      color: colors[Math.floor(Math.random() * colors.length)],
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let sq of squares) {
+      ctx.save();
+      ctx.translate(sq.x, sq.y);
+      ctx.rotate(sq.rotation * Math.PI / 180);
+      ctx.fillStyle = sq.color;
+      ctx.globalAlpha = 0.12;
+      ctx.fillRect(-sq.size / 2, -sq.size / 2, sq.size, sq.size);
+      ctx.globalAlpha = 1;
+      ctx.restore();
+      sq.y += sq.speed;
+      sq.rotation += sq.rotSpeed;
+      if (sq.y > canvas.height + 100) {
+        sq.y = -100;
+        sq.x = Math.random() * canvas.width;
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+</script>
+
+<!-- الاختبار + المساعد + شارة متقن -->
+<script>
+  function check() {
+    const q1 = document.querySelector('input[name="q1"]:checked')?.value;
+    const q2 = document.querySelector('input[name="q2"]:checked')?.value;
+    const q3 = document.querySelector('input[name="q3"]:checked')?.value;
+    const result = document.getElementById("quizResult") || document.getElementById("result");
+    const next = document.getElementById("nextSection");
+
+    let score = 0;
+    if (q1 === "b") score++;
+    if (q2 === "c") score++;
+    if (q3 === "b") score++;
+
+    if (score === 3) {
+      result.innerText = "🎉 ممتاز! يمكنك المتابعة.";
+      result.style.color = "#00e676";
+      if (next) next.style.display = "block";
+    } else if (score === 2) {
+      result.innerText = "🙂 جيد، لكن راجع بعض النقاط.";
+      result.style.color = "#ffc107";
+    } else {
+      result.innerText = "😅 حاول تقرأ الفصل من جديد.";
+      result.style.color = "#ff5252";
+    }
+  }
+
+  // المساعد الذكي
+  const askBox = document.getElementById("askBox");
+  if (askBox) {
+    askBox.addEventListener("keypress", (e) => {
+      if (e.key === "Enter" && askBox.value.trim() !== "") {
+        const query = askBox.value.trim();
+        const url = `https://www.bing.com/search?q=site%3Acopilot.microsoft.com+${encodeURIComponent(query)}`;
+        window.open(url, "_blank");
+        askBox.value = "";
+      }
+    });
+  }
+
+  // شارة متقن وتسجيل الفصل
+  const path = location.pathname.split("/").pop();
+  const completed = JSON.parse(localStorage.getItem("cyberProgress")) || [];
+  if (!completed.includes(path)) {
+    completed.push(path);
+    localStorage.setItem("cyberProgress", JSON.stringify(completed));
+    const badge = document.createElement("div");
+    badge.textContent = "🏅 مُتقن!";
+    badge.style.cssText = "position:fixed; top:10px; left:10px; background:#222; color:#0f0; padding:6px 10px; border-radius:6px; font-weight:bold; z-index:999;";
+    document.body.appendChild(badge);
+    setTimeout(() => badge.remove(), 3000);
+  }
+  localStorage.setItem("lastChapter", path);
+    const studentId = localStorage.getItem("student_id"); // ← تُخزن بعد تسجيل الدخول
+  const pageName = "lap.html"; // ← اسم هذه الصفحة
+
+  if (studentId) {
+    fetch(`/track_progress/${studentId}/${pageName}`, { method: 'POST' })
+      .then(res => res.json())
+      .then(data => console.log("✅ تقدم محفوظ:", data.updated_progress));
+  }
+</script>
+      <script>
+    fetch('/track_progress/{{ student.id }}/kali.html', { method: 'POST' });
+  </script>
+</body>
+</html>

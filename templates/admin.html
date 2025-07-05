@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <title>لوحة التحكم – المعلم</title>
+  <style>
+    body {
+      background: #0f1826;
+      color: #eee;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+    }
+    h2 { color: #ffd54f; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background: rgba(255,255,255,0.05);
+    }
+    th, td {
+      padding: 0.8rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+    }
+    th {
+      background: #1e2b3a;
+      color: #ffd54f;
+    }
+    tr:nth-child(even) {
+      background-color: rgba(255,255,255,0.03);
+    }
+  </style>
+</head>
+<body>
+  <h2>📊 لوحة المعلم – بيانات الطلاب</h2>
+  <input type="text" id="searchBox" placeholder="🔍 ابحث عن اسم أو جلسة..." style="margin-top: 1rem; padding: 0.5rem; width: 300px;">
+  <div style="display:flex; gap:2rem; margin-bottom:1rem;">
+  <div>👥 عدد الطلاب: <strong>{{ students|length }}</strong></div>
+  <div>📈 آخر دخول: <strong>{{ students[0].login_time.strftime('%Y/%m/%d – %H:%M') }}</strong></div>
+  <div>
+    🎯 متوسط النتيجة:
+    <strong>
+      {{
+        (students|map(attribute='score')|sum) // (students|length)
+        if students|length > 0 else 0
+      }} / 100
+    </strong>
+  </div>
+</div>
+    <input type="text" id="adminMsg" placeholder="أدخل رسالة…" style="padding:0.5rem; width:300px;">
+<button onclick="sendMsg()">📨 إرسال للطلاب</button>
+
+    <button onclick="exportTableToExcel('studentsTable')" style="margin-bottom:1rem; padding:0.6rem;">📤 تصدير إلى Excel</button>
+  <table id="studentsTable">
+    <thead>
+      <tr>
+        <th>الرقم</th>
+        <th>الاسم</th>
+        <th>الجلسة</th>
+        <th>الوقت</th>
+        <th>النتيجة</th>
+        <th>الصفحات التي زارها</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in students %}
+      <tr>
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.session_code }}</td>
+        <td>{{ student.login_time.strftime('%Y/%m/%d – %H:%M') }}</td>
+        <td>{{ student.score }} / 100</td>
+        <td>
+          {% if student.progress %}
+            {{ student.progress.replace(',', ', ') }}
+          {% else %}
+            –
+          {% endif %}
+        </td>
+        <td>
+  <a href="/student/{{ student.id }}" target="_blank">👁️ عرض</a>
+</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <script>
+  $(document).ready(function () {
+    $("#searchBox").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      $("table tbody tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+  function exportTableToExcel(tableID, filename = 'student_data.xls') {
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+    var downloadLink = document.createElement("a");
+    document.body.appendChild(downloadLink);
+    downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+    downloadLink.download = filename;
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  }
+</script>
+
+<script>
+  const socket = io();
+  function sendMsg() {
+    const msg = document.getElementById("adminMsg").value;
+    socket.emit("admin_message", { message: msg });
+  }
+</script>
+
+</body>
+</html>

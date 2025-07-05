@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>📘 ملخص المستوى الأول</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      background: #0f1826;
+      color: #eee;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      overflow-x: hidden;
+    }
+
+    canvas#bgCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; right: 0;
+      width: 100%;
+      background: #0a0a0ad8;
+      padding: 0.8rem 1.5rem;
+      color: #00e5ff;
+      font-weight: bold;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: #0f0;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .glass-container {
+      width: 60%;
+      margin: 6rem auto 3rem;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      color: #00e5ff;
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      color: #ccc;
+      margin-top: 2rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li::before {
+      content: "✅ ";
+      color: #0f0;
+    }
+
+    .note {
+      background: #1a1a1a;
+      border-right: 5px solid #00e5ff;
+      padding: 1rem;
+      margin: 1.5rem 0;
+      border-radius: 6px;
+    }
+
+    a {
+      color: #00e5ff;
+      text-decoration: none;
+    }
+
+    .btn-next {
+      display: inline-block;
+      margin-top: 2rem;
+      background: #00e5ff;
+      color: #000;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.85rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+
+<nav>
+  <span>📘 أكاديمية الظل الرقمي</span>
+  <a href="academy-index.html">🏠 الرئيسية</a>
+</nav>
+
+<div class="glass-container">
+  <h1 data-aos="fade-down">📘 ملخص المستوى الأول – الظل الرقمي</h1>
+  <section class="block" data-aos="fade-up">
+  <h2>📂 الفصول التي أتممتها:</h2>
+  <ul>
+    <li><strong>مقدمة كالي لينُكس</strong> – لماذا نستخدمه وكيفية تنصيبه</li>
+    <li><strong>الطرفية – Terminal</strong> – أساسيات الأوامر CLI</li>
+    <li><strong>أوامر متقدمة</strong> – grep, curl, chmod, iptables...</li>
+    <li><strong>أدوات الفحص</strong> – Nmap, Netdiscover, WhatWeb, arp-scan</li>
+    <li><strong>أدوات الاستغلال</strong> – Metasploit, sqlmap, searchsploit</li>
+    <li><strong>البيئة العملية</strong> – تطبيق عملي داخل DVWA وMetasploitable</li>
+  </ul>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="100">
+  <h2>📈 ماذا تعلمت؟</h2>
+  <ul>
+    <li>✅ الفهم الحقيقي للطرفية والفرق بين CLI وGUI</li>
+    <li>✅ اختيار الأداة الصحيحة حسب المرحلة (فحص، استغلال، تحليل)</li>
+    <li>✅ تنفيذ أوامر حقيقية داخل بيئة وهمية آمنة</li>
+    <li>✅ فهم الأخلاقيات القانونية للأمن السيبراني</li>
+  </ul>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="200">
+  <div class="note">
+    🎉 أحسنت يا غيث! لقد أتممت دورة متكاملة تشمل الفحص والاستغلال والتطبيق داخل بيئة محمية.  
+    أنت الآن جاهز للمستوى الثاني... أو لتحديات تحاكي الواقع!
+  </div>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="300">
+  <h2>🧭 الخطوة التالية:</h2>
+  <ul>
+    <li><a href="level2.html">🔓 المستوى الثاني – الشبكات اللاسلكية + Post Exploitation</a></li>
+    <li><a href="challenges.html">🎯 التحديات العملية – سيناريوهات هجوم حقيقي (لكن آمن)</a></li>
+  </ul>
+
+  <a class="btn-next" href="level2.html">🚀 ابدأ المستوى الثاني الآن</a>
+</section>
+  </div> <!-- نهاية .glass-container -->
+
+<footer>
+  <p style="text-align:center; margin-top: 3rem; color:#777;">الظل الرقمي – غيث 2025 💻</p>
+</footer>
+
+<!-- AOS تأثيرات الظهور -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,
+    once: true,
+    easing: 'ease-in-out'
+  });
+</script>
+
+<!-- خلفية سماوية متساقطة -->
+<canvas id="bgCanvas"></canvas>
+<script>
+  const canvas = document.getElementById("bgCanvas");
+  const ctx = canvas.getContext("2d");
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+
+  const squares = [];
+  const colors = ["#0f4c75", "#3282b8", "#bbe1fa"];
+  for (let i = 0; i < 35; i++) {
+    squares.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 60 + 40,
+      rotation: Math.random() * 360,
+      speed: Math.random() * 0.3 + 0.1,
+      rotSpeed: Math.random() * 0.4 - 0.2,
+      color: colors[Math.floor(Math.random() * colors.length)]
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let sq of squares) {
+      ctx.save();
+      ctx.translate(sq.x, sq.y);
+      ctx.rotate(sq.rotation * Math.PI / 180);
+      ctx.fillStyle = sq.color;
+      ctx.globalAlpha = 0.1;
+      ctx.fillRect(-sq.size / 2, -sq.size / 2, sq.size, sq.size);
+      ctx.globalAlpha = 1;
+      ctx.restore();
+      sq.y += sq.speed;
+      sq.rotation += sq.rotSpeed;
+      if (sq.y > canvas.height + 100) {
+        sq.y = -100;
+        sq.x = Math.random() * canvas.width;
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+</script>
+
+<!-- 🏅 شارة “مُتقن” + حفظ التقدّم -->
+<script>
+  const currentPage = location.pathname.split("/").pop();
+
+  // 🏅 حفظ التقدّم في LocalStorage
+  const completed = JSON.parse(localStorage.getItem("cyberProgress")) || [];
+  if (!completed.includes(currentPage)) {
+    completed.push(currentPage);
+    localStorage.setItem("cyberProgress", JSON.stringify(completed));
+
+    // شارة مُتقن
+    const badge = document.createElement("div");
+    badge.textContent = "🏅 مُتقن!";
+    badge.style.cssText = "position:fixed; top:10px; left:10px; background:#222; color:#0f0; padding:6px 10px; border-radius:6px; font-weight:bold; z-index:999;";
+    document.body.appendChild(badge);
+    setTimeout(() => badge.remove(), 3000);
+  }
+
+  localStorage.setItem("lastChapter", currentPage);
+
+  // 🧠 تتبّع التقدّم في قاعدة البيانات
+  const studentId = localStorage.getItem("student_id");
+
+  if (studentId) {
+    fetch(`/track_progress/${studentId}/${currentPage}`, { method: 'POST' })
+      .then(res => res.json())
+      .then(data => console.log("✅ سجلنا تقدم:", data.progress));
+
+    // 📊 جلب النتيجة النهائية
+    fetch(`/get_score/${studentId}`)
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("resultBox").innerText = `نتيجتك: ${data.score} / 100`;
+      });
+  }
+</script>
+
+    <script>
+    fetch('/track_progress/{{ student.id }}/summary.html', { method: 'POST' });
+  </script>
+
+</body>
+</html>

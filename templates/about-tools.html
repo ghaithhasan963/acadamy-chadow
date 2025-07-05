@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>📘 أدوات كالي – الفصل الخامس</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      background: #0f1826;
+      color: #eee;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      overflow-x: hidden;
+    }
+
+    canvas#bgCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; right: 0;
+      width: 100%;
+      background: #0a0a0ad8;
+      padding: 0.8rem 1.5rem;
+      color: #00e5ff;
+      font-weight: bold;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: #0f0;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .glass-container {
+      width: 60%;
+      margin: 6rem auto 3rem;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      color: #00e5ff;
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .block {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 1.2rem 1.5rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 1.8rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .block:hover {
+      transform: scale(1.015);
+      box-shadow: 0 0 12px #00e5ff33;
+    }
+
+    .block h2 {
+      color: #00e5ff;
+      margin-bottom: 0.6rem;
+      font-size: 1.3rem;
+    }
+
+    .block p, .block ul, .block ol {
+      font-size: 1rem;
+      color: #ccc;
+      line-height: 1.7;
+    }
+
+    .block ul, .block ol {
+      padding-right: 1.5rem;
+    }
+
+    code {
+      background: #222;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #0ff;
+      font-family: monospace;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.85rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+
+<nav>
+  <span>📘 أكاديمية الظل الرقمي</span>
+  <a href="academy-index.html">🏠 الرئيسية</a>
+</nav>
+
+<div class="glass-container">
+  <h1 data-aos="fade-down">📘 الفصل الخامس: أدوات كالي</h1>
+  <section class="block" data-aos="fade-up">
+  <h2>📘 مقدمة</h2>
+  <p>كالي لينُكس يحتوي على أكثر من 600 أداة متخصصة.  
+  لكن لا تقلق… سنبدأ بأشهرها، ونفهمها حسب "المجال" الذي تُستخدم فيه.</p>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="100">
+  <h2>🕵️‍♂️ أدوات جمع المعلومات (Reconnaissance)</h2>
+  <ul>
+    <li><strong>theHarvester:</strong> يجمع البريد الإلكتروني، DNS، IP من الإنترنت  
+      <br>🧠 كأنك "تبحث عن أثر أحدهم أونلاين"</li>
+
+    <li><strong>whois:</strong> يكشف معلومات النطاق Domain مثل من يملكه ومتى سُجّل  
+      <br>🧾 مثل بطاقة الهوية للموقع</li>
+
+    <li><strong>dnsenum:</strong> يُحلّل DNS ويبحث عن المجالات الفرعية  
+      <br>🌐 كأنك تبحث عن أبواب خلفية لموقع</li>
+  </ul>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="200">
+  <h2>📡 أدوات فحص الشبكة (Scanning)</h2>
+  <ul>
+    <li><strong>Nmap:</strong> أشهر أداة لفحص الأجهزة والمنافذ  
+      <br>📍 كأنك تطرق كل باب لتعرف من خلفه</li>
+
+    <li><strong>Netdiscover:</strong> يبحث عن الأجهزة داخل شبكة محلية  
+      <br>🖥️ مثل التعرف على سكان الحي عبر Wi-Fi</li>
+
+    <li><strong>Zenmap:</strong> واجهة رسومية لـ Nmap — مناسبة للمبتدئين</li>
+  </ul>
+  <div class="block" style="background:#1a1a1acc; border-right:5px solid #ff9800;">
+    ⚠️ لا تُجري أي فحص على شبكة لا تملكها أو لم تحصل على إذن لاستخدامها!
+  </div>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="300">
+  <h2>💥 أدوات استغلال الثغرات (Exploitation)</h2>
+  <ul>
+    <li><strong>Metasploit Framework:</strong> أقوى منصة لاختبار الثغرات وتنفيذ Payloads  
+      <br>🔧 كأنه صندوق أدوات احترافي للاختراق الأخلاقي</li>
+
+    <li><strong>sqlmap:</strong> اختبار قواعد البيانات واكتشاف ثغرات SQL Injection  
+      <br>📊 مثل من يُدخل جمل ذكية بنموذج لاكتشاف الأبواب الخلفية</li>
+  </ul>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="400">
+  <h2>🔓 أدوات كسر كلمات المرور (Cracking)</h2>
+  <ul>
+    <li><strong>Hydra:</strong> يجرّب آلاف كلمات المرور تلقائيًا (Brute Force)  
+      <br>💣 كأنك تجرب مفتاحًا تلو الآخر لفتح القفل</li>
+
+    <li><strong>John the Ripper:</strong> يهاجم ملفات كلمات السر المحلية  
+      <br>🪓 مثل قارئ ملفات مغلقة بأسلوب ذكي</li>
+  </ul>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="500">
+  <h2>🌐 أدوات تحليل الويب والهندسة الاجتماعية</h2>
+  <ul>
+    <li><strong>Burp Suite:</strong> أداة رسومية لتحليل تطبيقات الويب والتقاط الطلبات  
+      <br>🕸️ مثل عدسة مكبرة لكل طلب HTTP</li>
+
+    <li><strong>SET (Social Engineering Toolkit):</strong> أدوات لهجمات البريد المزيف وصفحات وهمية  
+      <br>🎭 مثل محاكي لموقع زائف لاختبار وعي الضحية</li>
+  </ul>
+  <div class="block" style="background:#1a1a1acc; border-right:5px solid #f44336;">
+    ⚠️ هذه الأدوات خطيرة إذا استُخدمت خارج بيئة اختبار مرخّصة.  
+    الهدف منها تعليمي بحت – أي استخدام غير أخلاقي يُعتبر جريمة!
+  </div>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="600">
+  <h2>🎯 ماذا بعد؟</h2>
+  <p>تعرفنا على أشهر أدوات كالي لينُكس.  
+  الآن حان وقت التطبيق العملي من خلال الطرفية (Terminal) 🚀</p>
+  <div class="block" style="background:#1a1a1acc; border-right:5px solid #2196f3;">
+    📥 <a href="lab.html" style="color:#0f0;">انتقل إلى الفصل التالي – الترمنال وكتابة الأوامر</a>
+  </div>
+</section>
+  <!-- AOS Library --> <script src="https://unpkg.com/aos@next/dist/aos.js"></script> <script> AOS.init({ duration: 800, once: true, easing: 'ease-in-out', }); </script>
+
+<!-- خلفية مربعات كحلية متساقطة --> <script> const canvas = document.getElementById("bgCanvas"); const ctx = canvas.getContext("2d");
+
+function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; } resizeCanvas(); window.addEventListener("resize", resizeCanvas);
+
+const squares = []; const colors = ["#1c2f47", "#274664", "#325d84"]; for (let i = 0; i < 35; i++) { squares.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, size: Math.random() * 60 + 40, rotation: Math.random() * 360, speed: Math.random() * 0.3 + 0.1, rotSpeed: Math.random() * 0.4 - 0.2, color: colors[Math.floor(Math.random() * colors.length)], }); }
+
+function draw() { ctx.clearRect(0, 0, canvas.width, canvas.height); for (let sq of squares) { ctx.save(); ctx.translate(sq.x, sq.y); ctx.rotate(sq.rotation * Math.PI / 180); ctx.fillStyle = sq.color; ctx.globalAlpha = 0.12; ctx.fillRect(-sq.size / 2, -sq.size / 2, sq.size, sq.size); ctx.globalAlpha = 1; ctx.restore(); sq.y += sq.speed; sq.rotation += sq.rotSpeed; if (sq.y > canvas.height + 100) { sq.y = -100; sq.x = Math.random() * canvas.width; } } requestAnimationFrame(draw); } draw(); </script>
+
+<!-- شارة "مُتقن" وتسجيل التقدّم --> <script> const path = location.pathname.split("/").pop(); const completed = JSON.parse(localStorage.getItem("cyberProgress")) || []; if (!completed.includes(path)) { completed.push(path); localStorage.setItem("cyberProgress", JSON.stringify(completed)); const badge = document.createElement("div"); badge.textContent = "🏅 مُتقن!"; badge.style.cssText = "position:fixed; top:10px; left:10px; background:#222; color:#0f0; padding:6px 10px; border-radius:6px; font-weight:bold; z-index:999;"; document.body.appendChild(badge); setTimeout(() => badge.remove(), 3000); } localStorage.setItem("lastChapter", path); 
+   const studentId = localStorage.getItem("student_id");
+  const pageName = location.pathname.split("/").pop();
+
+  if (studentId) {
+    fetch(`/track_progress/${studentId}/${pageName}`, {
+      method: 'POST'
+    }).then(res => res.json()).then(data => {
+      console.log("✅ تقدم محفوظ:", data.progress);
+    });
+  }
+</script>
+
+  </body> 
+</html>

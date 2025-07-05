@@ -1,0 +1,178 @@
+<!-- انسخ هذا الكود واحفظه كـ network.html -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>🌐 الشبكات – الفصل الثاني</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+  <style>
+    body {
+      margin: 0;
+      background: #0f1826;
+      color: #eee;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      overflow-x: hidden;
+    }
+    canvas#bgCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+    nav {
+      position: fixed;
+      top: 0; right: 0;
+      width: 100%;
+      background: #0a0a0ad8;
+      padding: 0.8rem 1.5rem;
+      color: #00e5ff;
+      font-weight: bold;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: #0f0;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .glass-container {
+      width: 60%;
+      margin: 6rem auto 3rem;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+    }
+    h1 {
+      color: #00e5ff;
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .block {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 1.2rem 1.5rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 1.8rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .block:hover {
+      transform: scale(1.015);
+      box-shadow: 0 0 12px #00e5ff33;
+    }
+    .block h2 {
+      color: #00e5ff;
+      margin-bottom: 0.6rem;
+      font-size: 1.3rem;
+    }
+    .block p, .block ul, .block ol {
+      font-size: 1rem;
+      color: #ccc;
+      line-height: 1.7;
+    }
+    .block ul, .block ol {
+      padding-right: 1.5rem;
+    }
+    .btn-next {
+      background: #00e5ff;
+      color: #000;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.85rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+<canvas id="bgCanvas"></canvas>
+<nav>
+  <span>📘 أكاديمية الظل الرقمي</span>
+  <a href="academy-index.html">🏠 الرئيسية</a>
+</nav>
+<div class="glass-container">
+  <h1 data-aos="fade-down">🌐 الفصل الثاني: الشبكات</h1>
+  <section class="block" data-aos="fade-up">
+     <h2>🔌 ما هي الشبكة؟</h2>
+      <p>شبكة = مجموعة أجهزة متصلة ببعضها لتبادل المعلومات.</p> 
+      <div class="block" style="background:#1a1a1acc; border-right: 5px solid #00e5ff;">
+         💡 مثل بيوت الحارة… كل بيت فيه سكان، وكلهم متصلين بشبكة الماء أو الكهرباء. كذلك الأمر بالأجهزة! 
+      </div>
+     </section>
+
+  <section class="block" data-aos="fade-up"> <h2>📍 عنوان IP</h2> <p>هو الرقم يلي بيميز كل جهاز داخل الشبكة. مثل: <code>192.168.1.10</code></p> <ul> <li>يشبه رقم هاتفك → يميزك داخل الشبكة</li> <li>IP داخلي (داخل الشبكة) وIP خارجي (الإنترنت)</li> </ul> </section>
+
+  <section class="block" data-aos="fade-up"> <h2>🆔 عنوان MAC</h2> <p>هو هوية الجهاز الثابتة، مثل بصمة الشبكة الخاصة بكرت الشبكة.</p> <ul> <li>مثال: <code>00:1A:2B:3C:4D:5E</code></li> <li>يُستخدم داخل الشبكة المحلية للتعرف على الأجهزة</li> </ul> </section>
+
+  <section class="block" data-aos="fade-up"> <h2>🌍 ما هو DNS؟</h2> <p>DNS = <strong>Domain Name System</strong>. هو "دليل الهاتف" اللي بيحوّل أسماء المواقع إلى أرقام IP.</p> <div class="block" style="background:#1a1a1acc; border-right: 5px solid #00e5ff;"> 💡 لما تكتب <code>google.com</code>، المتصفح يسأل DNS: "شو الـ IP تبع هالموقع؟" فيرجعله مثلاً: <code>142.250.180.238</code> </div> </section>
+
+  <section class="block" data-aos="fade-up"> <h2>🔁 ما هو NAT؟</h2> <p>NAT = <strong>Network Address Translation</strong></p> <p>بيسمح لكل أجهزة بيتك تستخدم نفس الـ IP الخارجي، ويعرّفهم داخلياً بـ IPات محلية.</p> <div class="block" style="background:#1a1a1acc; border-right: 5px solid #ffc107;"> 📦 الراوتر بيشتغل كموزّع ذكي: يوصل الإنترنت للّابتوب والموبايل والتلفزيون… كلهم يتشاركون نفس IP! </div> </section>
+
+  <section class="block" data-aos="fade-up"> <h2>📶 LAN و WAN</h2> <ul> <li><strong>LAN:</strong> شبكة محلية مثل شبكة بيتك أو المكتب</li> <li><strong>WAN:</strong> الشبكة العالمية – الإنترنت بأكمله</li> </ul> </section>
+
+  <section class="block" data-aos="fade-up"> <h2>📚 نموذج OSI – 7 طبقات للاتصال</h2> <p>نموذج OSI يُقسّم الاتصال إلى 7 طبقات. كل طبقة لها وظيفة خاصة:</p> <ol> <li>التطبيق</li> <li>العرض</li> <li>الجلسة</li> <li>النقل</li> <li>الشبكة</li> <li>رابط البيانات</li> <li>الفيزيائية</li> </ol> <div class="block" style="background:#1a1a1acc; border-right: 5px solid #00e5ff;"> ✉️ تخيلها مثل رسالة بريدية: الفيزيائية = الشارع، الشبكة = صندوق البريد، التطبيق = محتوى الرسالة. </div> </section>
+
+  <section class="block" data-aos="fade-up"> <h2>📡 بروتوكول TCP/IP</h2> <p>هو البروتوكول الحقيقي للإنترنت اليوم. يقسم البيانات إلى "رُزم" (Packets) وبيوصلها باستخدام:</p> <ul> <li><strong>TCP:</strong> يضمن ترتيب واستلام البيانات</li> <li><strong>IP:</strong> يحدد العنوان الرقمي للمستقبل</li> </ul> </section>
+  <section class="block" data-aos="fade-up"> <h2>🧪 اختبار الفصل</h2> <p><strong>1. ما وظيفة DNS؟</strong></p> <label><input type="radio" name="q1" value="a"> تشفير البيانات</label><br> <label><input type="radio" name="q1" value="b"> تحويل اسم الموقع إلى IP</label><br> <label><input type="radio" name="q1" value="c"> إعطاء الإنترنت سرعة أكبر</label>
+
+  <p style="margin-top:1rem;"><strong>2. ما الفرق بين IP و MAC؟</strong></p> <label><input type="radio" name="q2" value="a"> MAC مؤقت – IP ثابت</label><br> <label><input type="radio" name="q2" value="b"> IP منطقي – MAC مادي</label><br> <label><input type="radio" name="q2" value="c"> كلاهما فقط داخل الإنترنت</label>
+
+  <p style="margin-top:1rem;"><strong>3. ما هو NAT؟</strong></p> <label><input type="radio" name="q3" value="a"> بروتوكول لتسريع الفيديو</label><br> <label><input type="radio" name="q3" value="b"> تحويل IP داخلي إلى خارجي</label><br> <label><input type="radio" name="q3" value="c"> متصفح إنترنت</label>
+
+  <br><br> <button class="btn-next" onclick="checkAnswers()">✅ تحقق</button> <p id="quizResult" style="margin-top: 1rem;"></p> </section>
+
+  <!-- زر حفظ PDF --> <div style="text-align:center; margin-top:2rem;" data-aos="fade-up"> <button class="btn-next" onclick="window.print()">📄 حفظ الفصل كـ PDF</button> </div>
+
+  <!-- مساعد ذكي --> <section class="block" data-aos="fade-up"> <h2>🤖 اسأل هذا الفصل</h2> <input type="text" id="askBox" placeholder="اسألني أي شيء متعلق بالمحتوى..." style="width:100%; padding:0.6rem; border-radius:6px; border:none; background:#000; color:#0f0; border:1px solid #00e5ff;"> <p style="font-size:0.85rem; color:#777;">يتم البحث المباشر عبر Copilot</p> </section>
+
+  </div> <!-- نهاية .glass-container -->
+
+  <footer> 🌐 الظل الرقمي – تصميم غيث 2025 💻 </footer>
+
+  <!-- AOS & الخلفية و السكربتات --> <script src="https://unpkg.com/aos@next/dist/aos.js"></script> <script> AOS.init({ duration: 800, once: true }); </script>
+
+  <script> const canvas = document.getElementById("bgCanvas"); const ctx = canvas.getContext("2d");
+
+  function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; } resizeCanvas(); window.addEventListener("resize", resizeCanvas);
+
+  const squares = []; const colors = ["#1c2f47", "#274664", "#325d84"]; for (let i = 0; i < 35; i++) { squares.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, size: Math.random() * 60 + 40, rotation: Math.random() * 360, speed: Math.random() * 0.3 + 0.1, rotSpeed: Math.random() * 0.4 - 0.2, color: colors[Math.floor(Math.random() * colors.length)], }); }
+
+  function draw() { ctx.clearRect(0, 0, canvas.width, canvas.height); for (let sq of squares) { ctx.save(); ctx.translate(sq.x, sq.y); ctx.rotate(sq.rotation * Math.PI / 180); ctx.fillStyle = sq.color; ctx.globalAlpha = 0.12; ctx.fillRect(-sq.size / 2, -sq.size / 2, sq.size, sq.size); ctx.globalAlpha = 1; ctx.restore(); sq.y += sq.speed; sq.rotation += sq.rotSpeed; if (sq.y > canvas.height + 100) { sq.y = -100; sq.x = Math.random() * canvas.width; } } requestAnimationFrame(draw); } draw(); </script>
+
+  <script> function checkAnswers() { const q1 = document.querySelector('input[name="q1"]:checked')?.value; const q2 = document.querySelector('input[name="q2"]:checked')?.value; const q3 = document.querySelector('input[name="q3"]:checked')?.value; const result = document.getElementById("quizResult"); let score = 0; if (q1 === "b") score++; if (q2 === "b") score++; if (q3 === "b") score++; if (score === 3) { result.innerText = "🎉 ممتاز! جاهز للفصل التالي"; result.style.color = "#00e676"; } else if (score === 2) { result.innerText = "🙂 جيد، لكن راجع نقطة أو نقطتين"; result.style.color = "#ffc107"; } else { result.innerText = "😅 حاول تقرأ الفصل مرة أخرى"; result.style.color = "#ff5252"; } }
+
+  // المساعد const askBox = document.getElementById("askBox"); if (askBox) { askBox.addEventListener("keypress", (e) => { if (e.key === "Enter" && askBox.value.trim() !== "") { const query = askBox.value.trim(); const url = https://www.bing.com/search?q=site%3Acopilot.microsoft.com+${encodeURIComponent(query)}; window.open(url, "_blank"); askBox.value = ""; } }); }
+
+  // شارة “مُتقن” const path = location.pathname.split("/").pop(); const completed = JSON.parse(localStorage.getItem("cyberProgress")) || []; if (!completed.includes(path)) { completed.push(path); localStorage.setItem("cyberProgress", JSON.stringify(completed)); const badge = document.createElement("div"); badge.textContent = "🏅 مُتقن!"; badge.style.cssText = "position:fixed; top:10px; left:10px; background:#222; color:#0f0; padding:6px 10px; border-radius:6px; font-weight:bold; z-index:999;"; document.body.appendChild(badge); setTimeout(() => badge.remove(), 3000); } localStorage.setItem("lastChapter", path);
+    const studentId = localStorage.getItem("student_id"); // ← تُخزن بعد تسجيل الدخول
+  const pageName = "lap.html"; // ← اسم هذه الصفحة
+
+  if (studentId) {
+    fetch(`/track_progress/${studentId}/${pageName}`, { method: 'POST' })
+      .then(res => res.json())
+      .then(data => console.log("✅ تقدم محفوظ:", data.updated_progress));
+  }
+  </script>
+  <script>
+  fetch('/track_progress/{{ student.id }}/network.html', { method: 'POST' });
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>🔍 أدوات الفحص – الفصل الخامس</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      background: #0f1826;
+      color: #eee;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      overflow-x: hidden;
+    }
+
+    canvas#bgCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; right: 0;
+      width: 100%;
+      background: #0a0a0ad8;
+      padding: 0.8rem 1.5rem;
+      color: #00e5ff;
+      font-weight: bold;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: #0f0;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .glass-container {
+      width: 60%;
+      margin: 6rem auto 3rem;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      color: #00e5ff;
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .block {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 1.2rem 1.5rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 1.8rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .block:hover {
+      transform: scale(1.015);
+      box-shadow: 0 0 12px #00e5ff33;
+    }
+
+    .block h2 {
+      color: #00e5ff;
+      margin-bottom: 0.6rem;
+      font-size: 1.3rem;
+    }
+
+    .block p, .block ul {
+      font-size: 1rem;
+      color: #ccc;
+      line-height: 1.7;
+    }
+
+    .block ul {
+      padding-right: 1.5rem;
+    }
+
+    code {
+      background: #222;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #0ff;
+      font-family: monospace;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.85rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+
+<nav>
+  <span>📘 أكاديمية الظل الرقمي</span>
+  <a href="academy-index.html">🏠 الرئيسية</a>
+</nav>
+
+<div class="glass-container">
+  <h1 data-aos="fade-down">🔍 أدوات الفحص – الفصل الخامس</h1>
+  <section class="block" data-aos="fade-up">
+  <h2>📋 مقدمة أدوات الفحص</h2>
+  <p>قبل استغلال الثغرات، نحتاج إلى اكتشاف ما يدور على السطح…  
+  وهنا تأتي أدوات <strong>الفحص (Scanning)</strong> التي تكشف الأجهزة، المنافذ، الأنظمة، والخدمات.</p>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="100">
+  <h2>📡 ما هو الفحص؟</h2>
+  <p>الفحص هو مرحلة البحث عن الأهداف. نقوم فيها بـ:</p>
+  <ul>
+    <li>🔍 <strong>Ping Sweep:</strong> من يرد على Ping داخل الشبكة؟</li>
+    <li>🪟 <strong>Port Scan:</strong> ما المنافذ المفتوحة؟</li>
+    <li>🔢 <strong>Version Detection:</strong> ما إصدار الخدمة؟</li>
+    <li>🖥️ <strong>OS Detection:</strong> نظام التشغيل؟ (Windows/Linux)</li>
+  </ul>
+  <div class="block" style="background:#1a1a1acc; border-right:5px solid #00e5ff;">
+    🎯 هذه البيانات تُستخدم لاحقًا لاختيار أدوات الاستغلال المناسبة – مرحلة حساسة جدًا!
+  </div>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="200">
+  <h2>🧭 الأداة الأولى: Nmap</h2>
+  <p><strong>Nmap</strong> أشهر أداة لفحص المنافذ، الخدمات، الإصدارات، وحتى نظام التشغيل.</p>
+  <ul>
+    <li><code>nmap 192.168.1.1</code> ← فحص سريع لمضيف واحد</li>
+    <li><code>nmap -sV -O 192.168.1.1</code> ← كشف الإصدارات + النظام</li>
+    <li><code>nmap 192.168.1.0/24</code> ← فحص الشبكة كاملة</li>
+  </ul>
+  <div class="block" style="background:#1a1a1acc; border-right:5px solid #03a9f4;">
+    💡 كأنك تطل من ثقب الباب لتكتشف من خلفه… قبل الدخول!
+  </div>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="300">
+  <h2>🔍 الأداة الثانية: Netdiscover</h2>
+  <p>تستخدم لاكتشاف كل الأجهزة ضمن شبكة محلية</p>
+  <ul>
+    <li><code>netdiscover -r 192.168.1.0/24</code> ← كشف الأجهزة المتصلة بالشبكة</li>
+  </ul>
+  <div class="block" style="background:#1a1a1acc; border-right:5px solid #4caf50;">
+    🏘️ مثل من يمشي في الحي ويسجل من يقطن كل منزل
+  </div>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="400">
+  <h2>🖥️ الأداة الثالثة: ARP-scan</h2>
+  <p>أداة تعتمد على بروتوكول ARP لاكتشاف الأجهزة</p>
+  <ul>
+    <li><code>sudo arp-scan 192.168.1.0/24</code></li>
+  </ul>
+  <div class="block" style="background:#1a1a1acc; border-right:5px solid #ff9800;">
+    📡 تتجاوز الحماية أحيانًا لأنها تعمل بطبقات الشبكة المنخفضة
+  </div>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="500">
+  <h2>🌐 الأداة الرابعة: WhatWeb</h2>
+  <p>تحلل تقنيات مواقع الويب من الخارج</p>
+  <ul>
+    <li><code>whatweb example.com</code> ← اكتشاف CMS، إضافات، سكربتات، إصدارات</li>
+  </ul>
+  <div class="block" style="background:#1a1a1acc; border-right:5px solid #e91e63;">
+    🕸️ كأنك تمسح واجهة متجر لمعرفة علاماته التجارية
+  </div>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="600">
+  <h2>🎨 الأداة الخامسة: Zenmap</h2>
+  <p>واجهة رسومية لـ Nmap تسهّل العملية</p>
+  <ul>
+    <li>اختر الهدف، نوع الفحص، وشاهد النتائج بصريًا</li>
+  </ul>
+  <div class="block" style="background:#1a1a1acc; border-right:5px solid #9c27b0;">
+    🌈 مناسبة جدًا للمبتدئين
+  </div>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="700">
+  <h2>⚠️ تنبيه أخلاقي مهم</h2>
+  <div class="block" style="background:#1a1a1acc; border-right:5px solid #f44336;">
+    ❗ لا تستخدم أدوات الفحص على أي شبكة أو جهاز لا تمتلكه أو لم تحصل على إذن رسمي!  
+    قد يُعتبر ذلك اختراقًا قانونيًا ⚖️
+  </div>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="800">
+  <h2>🧪 اختبار أدوات الفحص</h2>
+  <p>اختبر معلوماتك واكتب أو اختر الأجوبة أدناه:</p>
+
+  <div id="quizZone" style="background:#1a1a1a; padding:1rem; border-radius:6px;">
+    <div style="background:#1a1a1a; padding:1rem; border-radius:6px;">
+  <h4>1️⃣ ما الأداة المناسبة لكشف جميع الأجهزة في شبكة محلية؟</h4>
+  <label><input type="radio" name="q1" value="a"> WhatWeb</label><br>
+  <label><input type="radio" name="q1" value="b"> Netdiscover</label><br>
+  <label><input type="radio" name="q1" value="c"> sqlmap</label><br><br>
+
+  <h4>2️⃣ ما نوع الفحص الذي يُظهر نظام التشغيل؟</h4>
+  <label><input type="radio" name="q2" value="a"> Port Scan</label><br>
+  <label><input type="radio" name="q2" value="b"> Version Detection</label><br>
+  <label><input type="radio" name="q2" value="c"> OS Detection</label><br><br>
+
+  <h4>3️⃣ أي أداة تُستخدم لاكتشاف تقنيات المواقع؟</h4>
+  <label><input type="radio" name="q3" value="a"> WhatWeb</label><br>
+  <label><input type="radio" name="q3" value="b"> Nmap</label><br>
+  <label><input type="radio" name="q3" value="c"> ARP-scan</label><br><br>
+
+  <h4>4️⃣ اكتب أمر باستخدام <code>nmap</code> لفحص الإصدارات:</h4>
+  <input type="text" id="q4" placeholder="nmap ..." style="width:100%; background:#000; color:#0f0; padding:6px; font-family:monospace;"><br><br>
+
+  <h4>5️⃣ أكمل هذا الأمر لكشف الأجهزة عبر ARP:</h4>
+  <code>sudo arp-scan</code>
+  <input type="text" id="q5" placeholder="... هنا" style="width:50%; background:#000; color:#0f0; padding:6px; font-family:monospace;"><br><br>
+
+  <button class="btn-next" onclick="checkScanQuiz()">✅ تحقق من الأجوبة</button>
+  <div id="scanResult" style="margin-top:1rem;"></div>
+</div>
+
+  </div>
+
+  <div id="scanNext" style="display:none; margin-top:2rem;">
+    <a href="exploits.html" class="btn-next">📥 انتقل إلى فصل الاستغلال</a>
+  </div>
+</section>
+  </div> <!-- نهاية .glass-container -->
+
+<footer>
+  <p style="text-align:center; margin-top: 3rem; color:#777;">الظل الرقمي – غيث 2025 💻</p>
+</footer>
+
+<!-- AOS Animation -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,
+    once: true,
+    easing: 'ease-in-out',
+  });
+</script>
+
+<!-- خلفية مربعات متساقطة -->
+<script>
+  const canvas = document.getElementById("bgCanvas");
+  const ctx = canvas.getContext("2d");
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+
+  const squares = [];
+  const colors = ["#1c2f47", "#274664", "#325d84"];
+  for (let i = 0; i < 35; i++) {
+    squares.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 60 + 40,
+      rotation: Math.random() * 360,
+      speed: Math.random() * 0.3 + 0.1,
+      rotSpeed: Math.random() * 0.4 - 0.2,
+      color: colors[Math.floor(Math.random() * colors.length)],
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let sq of squares) {
+      ctx.save();
+      ctx.translate(sq.x, sq.y);
+      ctx.rotate(sq.rotation * Math.PI / 180);
+      ctx.fillStyle = sq.color;
+      ctx.globalAlpha = 0.12;
+      ctx.fillRect(-sq.size / 2, -sq.size / 2, sq.size, sq.size);
+      ctx.globalAlpha = 1;
+      ctx.restore();
+      sq.y += sq.speed;
+      sq.rotation += sq.rotSpeed;
+      if (sq.y > canvas.height + 100) {
+        sq.y = -100;
+        sq.x = Math.random() * canvas.width;
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+</script>
+
+<!-- سكربت اختبار أدوات الفحص -->
+<script>
+  function checkScanQuiz() {
+    const q1 = document.querySelector('input[name="q1"]:checked')?.value;
+    const q2 = document.querySelector('input[name="q2"]:checked')?.value;
+    const q3 = document.querySelector('input[name="q3"]:checked')?.value;
+    const q4 = document.getElementById("q4").value.trim().toLowerCase();
+    const q5 = document.getElementById("q5").value.trim().toLowerCase();
+
+    let score = 0;
+    if (q1 === "b") score++;
+    if (q2 === "c") score++;
+    if (q3 === "a") score++;
+    if (q4 === "nmap -sv 192.168.1.1" || q4 === "nmap -sV 192.168.1.1") score++;
+    if (q5 === "192.168.1.0/24") score++;
+
+    const res = document.getElementById("scanResult");
+    const next = document.getElementById("scanNext");
+
+    if (score === 5) {
+      res.innerHTML = "🎯 أحسنت! كل الأجوبة صحيحة.";
+      res.style.color = "#00e676";
+      next.style.display = "block";
+    } else {
+      res.innerHTML = `😅 ${5 - score} إجابة غير صحيحة… حاول مجددًا.`;
+      res.style.color = "#ff5252";
+      next.style.display = "none";
+    }
+  }
+</script>
+
+<!-- شارة “مُتقن” وتسجيل التقدّم -->
+<script>
+  const path = location.pathname.split("/").pop();
+  const completed = JSON.parse(localStorage.getItem("cyberProgress")) || [];
+  if (!completed.includes(path)) {
+    completed.push(path);
+    localStorage.setItem("cyberProgress", JSON.stringify(completed));
+    const badge = document.createElement("div");
+    badge.textContent = "🏅 مُتقن!";
+    badge.style.cssText = "position:fixed; top:10px; left:10px; background:#222; color:#0f0; padding:6px 10px; border-radius:6px; font-weight:bold; z-index:999;";
+    document.body.appendChild(badge);
+    setTimeout(() => badge.remove(), 3000);
+  }
+  localStorage.setItem("lastChapter", path);
+    const studentId = localStorage.getItem("student_id"); // ← تُخزن بعد تسجيل الدخول
+  const pageName = "lap.html"; // ← اسم هذه الصفحة
+
+  if (studentId) {
+    fetch(`/track_progress/${studentId}/${pageName}`, { method: 'POST' })
+      .then(res => res.json())
+      .then(data => console.log("✅ تقدم محفوظ:", data.updated_progress));
+  }
+</script>
+    <script>
+    fetch('/track_progress/{{ student.id }}/tools.html', { method: 'POST' });
+  </script>
+</body>
+</html>

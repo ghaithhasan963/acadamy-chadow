@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>CS50 – كيف يفكر الحاسوب؟</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      background: #0f1826;
+      color: #eee;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      overflow-x: hidden;
+    }
+
+    canvas#bgCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; right: 0;
+      width: 100%;
+      background: #0a0a0ad8;
+      padding: 0.8rem 1.5rem;
+      color: #00e5ff;
+      font-weight: bold;
+      z-index: 1000;
+      box-shadow: 0 0 5px #00e5ff55;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: #0f0;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .glass-container {
+      width: 60%;
+      margin: 6rem auto 3rem;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      color: #00e5ff;
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    footer {
+      text-align: center;
+      color: #777;
+      padding: 2rem 1rem;
+      font-size: 0.85rem;
+    }
+    .block {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.2rem 1.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 1.8rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.block:hover {
+  transform: scale(1.015);
+  box-shadow: 0 0 12px #00e5ff33;
+}
+
+.block h2 {
+  color: #00e5ff;
+  margin-bottom: 0.6rem;
+  font-size: 1.3rem;
+}
+
+.block p, .block ul, .block ol {
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 1.7;
+}
+
+.block ul, .block ol {
+  padding-right: 1.5rem;
+}
+
+  </style>
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+
+<nav>
+  <span>📘 أكاديمية الظل الرقمي</span>
+  <a href="academy-index.html">🏠 الرئيسية</a>
+</nav>
+
+<div class="glass-container">
+  <h1 data-aos="fade-down">🧠 CS50 – كيف يفكر الحاسوب؟</h1>
+  <!-- فقرات الفصل -->
+<section class="block" data-aos="fade-up">
+  <h2>🖥️ ما هو الحاسوب؟</h2>
+  <p>الحاسوب آلة إلكترونية تأخذ مدخلات، تُجري عليها عمليات، ثم تُخرِج نتائج. لكنه لا "يفهم" مثل البشر—بل يُنفّذ التعليمات حرفياً.</p>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="100">
+  <h2>⚡ الترانزيستور والنظام الثنائي</h2>
+  <p>الترانزيستور هو مفتاح كهربائي صغير جداً، إما يسمح للتيار بالمرور (1) أو لا (0). ولهيك الحاسوب "يفكر" بالأصفار والآحاد فقط.</p>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="200">
+  <h2>🔢 كيف يُمثّل الأرقام؟</h2>
+  <ul>
+    <li>6 ← 110</li>
+    <li>15 ← 1111</li>
+  </ul>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="300">
+  <h2>🔤 تمثيل الحروف</h2>
+  <p><strong>"A"</strong> = 65 (ASCII)، و<strong>"ب"</strong> = 1575 (Unicode). كل حرف رقمه الخاص.</p>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="400">
+  <h2>🖼️ الصور؟</h2>
+  <p>أي صورة بتتكون من آلاف البكسلات. كل بكسل فيه لون ← يتحوّل لرقم ← يتحوّل لـ 0 و 1.</p>
+</section>
+
+<section class="block" data-aos="fade-up" data-aos-delay="500">
+  <h2>📦 ما هي الخوارزمية؟</h2>
+  <p>هي سلسلة خطوات لحل مشكلة. مثلًا:</p>
+  <ol>
+    <li>فهم المشكلة</li>
+    <li>كتابة خطوات الحل</li>
+    <li>تجريبها والتحقّق من صحتها</li>
+  </ol>
+</section>
+  <!-- اختبار الفصل -->
+<section class="block" data-aos="fade-up">
+  <h2>🧪 اختبار سريع</h2>
+  <p><strong>ما هو الترانزيستور؟</strong></p>
+  <label><input type="radio" name="q1" value="a"> شاشة صغيرة</label><br>
+  <label><input type="radio" name="q1" value="b"> مفتاح كهربائي صغير</label><br>
+  <label><input type="radio" name="q1" value="c"> بطارية كمبيوتر</label>
+  <br><br>
+  <button class="btn-next" onclick="checkQuiz()">✅ تحقق من إجابتك</button>
+  <p id="quizResult" style="margin-top:1rem;"></p>
+</section>
+
+<!-- زر حفظ PDF -->
+<div style="text-align:center; margin-top:2rem;">
+  <button class="btn-next" onclick="window.print()">📄 حفظ الفصل كـ PDF</button>
+</div>
+
+<!-- مربع المساعد -->
+<section class="block" data-aos="fade-up">
+  <h2>🤖 اسأل هذا الفصل</h2>
+  <input type="text" id="askBox" placeholder="اسألني أي شيء عن هذا الدرس..." style="width:100%; padding:0.6rem; border-radius:6px; border:none; background:#000; color:#0f0; border:1px solid #00e5ff;">
+  <p style="font-size:0.85rem; color:#777;">سيتم فتح رابط بحث مباشر مع المساعد الذكي (Copilot)</p>
+</section>
+
+</div>
+<section class="block" data-aos="fade-up" data-aos-delay="600">
+  <h2>🧩 مفاهيم أساسية</h2>
+  <ul>
+    <li><strong>المتغير:</strong> صندوق يخزّن معلومة</li>
+    <li><strong>الشرط:</strong> إذا حصل كذا → قم بذاك</li>
+    <li><strong>التكرار:</strong> إعادة نفس العملية مرات</li>
+    <li><strong>الإدخال:</strong> معلومة من المستخدم</li>
+  </ul>
+</section>
+  <!-- AOS Animation Library -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,
+    once: true,
+    easing: 'ease-in-out',
+  });
+</script>
+
+<!-- Canvas الخلفية: مربعات كبيرة تتحرك وتدور -->
+<script>
+  const canvas = document.getElementById("bgCanvas");
+  const ctx = canvas.getContext("2d");
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+
+  const squares = [];
+  const colors = ["#1c2f47", "#274664", "#325d84"];
+  for (let i = 0; i < 40; i++) {
+    squares.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 60 + 40,
+      rotation: Math.random() * 360,
+      speed: Math.random() * 0.3 + 0.1,
+      rotSpeed: Math.random() * 0.4 - 0.2,
+      color: colors[Math.floor(Math.random() * colors.length)],
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let sq of squares) {
+      ctx.save();
+      ctx.translate(sq.x, sq.y);
+      ctx.rotate(sq.rotation * Math.PI / 180);
+      ctx.fillStyle = sq.color;
+      ctx.globalAlpha = 0.1;
+      ctx.fillRect(-sq.size / 2, -sq.size / 2, sq.size, sq.size);
+      ctx.globalAlpha = 1;
+      ctx.restore();
+      sq.y += sq.speed;
+      sq.rotation += sq.rotSpeed;
+
+      if (sq.y > canvas.height + 100) {
+        sq.y = -100;
+        sq.x = Math.random() * canvas.width;
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+  // اختبار الفصل
+  function checkQuiz() {
+    const q1 = document.querySelector('input[name="q1"]:checked')?.value;
+    const result = document.getElementById("quizResult");
+
+    if (q1 === "b") {
+      result.innerText = "🎉 إجابة صحيحة! ممتاز 👏";
+      result.style.color = "#0f0";
+    } else if (q1) {
+      result.innerText = "❌ تقريبًا، راجع فقرة الترانزيستور!";
+      result.style.color = "#f55";
+    } else {
+      result.innerText = "⚠️ الرجاء اختيار إجابة.";
+      result.style.color = "#ff0";
+    }
+  }
+
+  // مربع المساعد
+  const askBox = document.getElementById("askBox");
+  if (askBox) {
+    askBox.addEventListener("keypress", (e) => {
+      if (e.key === "Enter" && askBox.value.trim() !== "") {
+        const query = askBox.value.trim();
+        const url = `https://www.bing.com/search?q=site%3Acopilot.microsoft.com+${encodeURIComponent(query)}`;
+        window.open(url, "_blank");
+        askBox.value = "";
+      }
+    });
+  }
+
+  // شارة “مُتقن”
+  const path = location.pathname.split("/").pop();
+  const completed = JSON.parse(localStorage.getItem("cyberProgress")) || [];
+  if (!completed.includes(path)) {
+    completed.push(path);
+    localStorage.setItem("cyberProgress", JSON.stringify(completed));
+    const badge = document.createElement("div");
+    badge.id = "badgeArea";
+    badge.textContent = "🏅 مُتقن!";
+    badge.style.cssText = "position:fixed; top:10px; left:10px; background:#222; color:#0f0; padding:6px 10px; border-radius:6px; font-weight:bold; z-index:999;";
+    document.body.appendChild(badge);
+    setTimeout(() => badge.remove(), 3000);
+  }
+  localStorage.setItem("lastChapter", path);
+    const studentId = localStorage.getItem("student_id"); // ← تُخزن بعد تسجيل الدخول
+  const pageName = "lap.html"; // ← اسم هذه الصفحة
+
+  if (studentId) {
+    fetch(`/track_progress/${studentId}/${pageName}`, { method: 'POST' })
+      .then(res => res.json())
+      .then(data => console.log("✅ تقدم محفوظ:", data.updated_progress));
+  }
+</script>
+  <script>
+    fetch('/track_progress/{{ student.id }}/cs50.html', { method: 'POST' });
+  </script>
+
+  </body>
+  </html>

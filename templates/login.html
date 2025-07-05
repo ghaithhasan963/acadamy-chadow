@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>تسجيل الدخول – أكاديمية الظل الرقمي</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  <script src="{{ url_for('static', filename='js/student_socket.js') }}"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+      background: radial-gradient(ellipse at center, #101820 0%, #0f1826 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+    }
+
+    .login-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      width: 90%;
+      max-width: 400px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 30px rgba(0,0,0,0.3);
+      animation: fadeIn 1s ease-in-out;
+      transition: all 1.5s 1;
+    }
+    .login-card:hover{
+      box-shadow: 0 0 40px rgb(0, 0, 0) ;
+    }
+    .login-card h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #ffd54f;
+    }
+
+    .login-card input {
+      width: 100%;
+      padding: 0.9rem;
+      margin: 0.6rem 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      background-color: rgba(255,255,255,0.1);
+      color: #fff;
+      outline: none;
+    }
+
+    .login-card button {
+      width: 100%;
+      padding: 0.9rem;
+      background-color: #ffd54f;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      transition: border 0.5s ease;
+    }
+
+    .login-card button:hover {
+      background-color: #ffec8a;
+      /* border: solid 1px rgb(88, 88, 3); */
+    }
+
+    .footer {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+
+    .error-msg {
+      color: #ff6961;
+      font-size: 0.85rem;
+      text-align: center;
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bgCanvas" style="position:fixed; top:0; left:0; z-index:-1;"></canvas>
+  <form class="login-card" method="POST" action="/login" data-aos="zoom-in">
+    <h2>🎓 تسجيل الدخول</h2>
+
+    <input type="text" name="student_name" id="student_name" placeholder="👤 اسمك الكامل" required>
+    <input type="text" name="session_code" id="session_code" placeholder="🔐 رمز الجلسة (مثلاً: CH7)" required>
+
+    <div class="error-msg" id="errorBox">يرجى ملء جميع الحقول</div>
+
+    <button type="submit" onclick="return validateForm()">🚀 ابدأ الأكاديمية</button>
+
+    <div class="footer">© الظل الرقمي – {{ now.year }} 🖥️</div>
+  </form>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>AOS.init();</script>
+
+  <script>
+    function validateForm() {
+      const name = document.getElementById("student_name").value.trim();
+      const session = document.getElementById("session_code").value.trim();
+      const errorBox = document.getElementById("errorBox");
+
+      if (!name || !session) {
+        errorBox.style.display = "block";
+        return false;
+      }
+      return true;
+    }
+  const canvas = document.getElementById("bgCanvas");
+  const ctx = canvas.getContext("2d");
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+
+  const squares = [];
+  const colors = ["#ffffff15", "#ffd54f11", "#ffffff0a"];
+
+  for (let i = 0; i < 30; i++) {
+    squares.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 40 + 20,
+      speed: Math.random() * 0.3 + 0.1,
+      opacity: Math.random() * 0.3 + 0.1,
+      color: colors[Math.floor(Math.random() * colors.length)]
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let sq of squares) {
+      ctx.fillStyle = sq.color;
+      ctx.globalAlpha = sq.opacity;
+      ctx.fillRect(sq.x, sq.y, sq.size, sq.size);
+      sq.y += sq.speed;
+      if (sq.y > canvas.height + 10) {
+        sq.y = -50;
+        sq.x = Math.random() * canvas.width;
+      }
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+  </script>
+</body>
+</html>

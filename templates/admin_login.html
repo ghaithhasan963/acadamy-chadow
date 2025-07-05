@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>الدخول إلى لوحة المعلم</title>
+  <style>
+    body {
+      background: #0f1826;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    form {
+      background: rgba(255,255,255,0.05);
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+    }
+    input {
+      padding: 0.8rem;
+      margin-top: 1rem;
+      border: none;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 1.1rem;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      width: 200px;
+    }
+    button {
+      padding: 0.8rem 1.5rem;
+      background: #ffd54f;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    p.error {
+      color: #ff6b6b;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <form method="POST">
+    <h2>🔐 الدخول إلى لوحة المعلم</h2>
+    <input type="password" name="password" maxlength="4" placeholder="أدخل الرمز السري">
+    <br>
+    <button type="submit">دخول</button>
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+  </form>
+</body>
+</html>
